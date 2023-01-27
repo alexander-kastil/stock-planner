@@ -1,15 +1,27 @@
 env=dev
 grp=stock-planner-$env
 loc=westeurope
-app=rateminer-$env
-storage=rateminer$env
+app=stock-planner-$env
+storage=stockplanner$env
 queue=rates
 
+# Storage Account and Queue
 az group create --name $grp --location $loc
 az storage account  create -n $storage -g $grp 
 key=$(az storage account keys list -n $storage --query "[0].value")
 az storage queue create -n $queue --account-key $key --account-name $storage
-
 conStr=$(az storage account show-connection-string -n $storage -g $grp --query connectionString -o tsv)
-az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4
+
+# Function Apps
+az functionapp create -n miner-$app -g $grp -s $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4
 az functionapp config appsettings set -n $app -g $grp --settings "AzureWebJobsStorage=$conStr"
+
+az functionapp create -n query-processor-$app- -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+az functionapp config appsettings set -n $app -g $grp --settings "AzureWebJobsStorage=$conStr"
+
+# Static Web App
+az staticwebapp create -n $app -g $grp
+deploytoken=$(az staticwebapp secrets list -n $app -g $grp --query properties.apiKey -o tsv)
+
+echo "Storage Connection String: $conStr"
+echo "Deploy Token: $deploytoken"
