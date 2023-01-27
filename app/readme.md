@@ -16,6 +16,9 @@ Update localsettings.json in Function App:
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "<Storage Connection String>",
+    "DBUser": "<DB User>",
+    "DBPassword": "<DB Password>",
+    "Database": "StockPlanner"
   }
 }
 ```

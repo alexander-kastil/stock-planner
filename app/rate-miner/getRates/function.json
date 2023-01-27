@@ -14,7 +14,7 @@
     {
       "type": "queue",
       "direction": "out",
-      "name": "rateQueueItem",
+      "name": "rateQueueItems",
       "queueName": "rates",
       "connection": "AzureWebJobsStorage"
     }

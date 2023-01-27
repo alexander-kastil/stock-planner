@@ -7,6 +7,6 @@
       "queueName": "rates",
       "connection": "AzureWebJobsStorage"
     }
-  ],
+  ],  
   "scriptFile": "../dist/writeRatesToDB/index.js"
 }
