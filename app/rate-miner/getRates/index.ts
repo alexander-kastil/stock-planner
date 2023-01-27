@@ -10,18 +10,18 @@ const timerTrigger: AzureFunction = async function (context: Context, rateTimer:
     ];
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    for (const query of queries) {
-        await page.goto(query.url);
+    for (const rateQuery of queries) {
+        await page.goto(rateQuery.url);
         const content = await page.content();
         let parser = new DomParser();
         const html = parser.parseFromString(content);
         let ratesResult = html.getElementsByClassName('aktien-big-font');
         if (ratesResult.length > 0) {
-            query.current = getNumber(ratesResult[0].textContent);
-            query.deltaCurr = getNumber(ratesResult[1].textContent);
-            query.deltaPercent = getNumber(ratesResult[2].textContent);
-            query.date = new Date();
-            console.log(query);
+            rateQuery.current = getNumber(ratesResult[0].textContent);
+            rateQuery.deltaCurr = getNumber(ratesResult[1].textContent);
+            rateQuery.deltaPercent = getNumber(ratesResult[2].textContent);
+            rateQuery.date = new Date();
+            console.log(rateQuery);
         }
         context.bindings.rateQueueItem = JSON.stringify(queries);
     }

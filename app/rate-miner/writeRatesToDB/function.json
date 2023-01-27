@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "name": "RateItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "rates",
+      "connection": "AzureWebJobsStorage"
+    }
+  ],
+  "scriptFile": "../dist/writeRatesToDB/index.js"
+}
