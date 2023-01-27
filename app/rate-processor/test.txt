@@ -1,0 +1,1 @@
+"{\r\n  \"url\": \"https://www.finanzen.at/aktien/tesla-aktie/tgt\",\r\n  \"name\": \"Tesla\",\r\n  \"isin\": \"US88160R1014\",\r\n  \"current\": 164,\r\n  \"deltaCurr\": 16.84,\r\n  \"deltaPercent\": 11.44,\r\n  \"date\": \"2023-01-27T20:54:25.672Z\"\r\n}"

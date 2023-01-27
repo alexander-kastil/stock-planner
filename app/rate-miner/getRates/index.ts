@@ -1,13 +1,11 @@
 import { AzureFunction, Context } from '@azure/functions';
 import puppeteer from 'puppeteer';
 import { RateQuery } from '../model/rateQuery';
+import { rateQueryList } from './queries';
 import DomParser = require('dom-parser');
 
 const timerTrigger: AzureFunction = async function (context: Context, rateTimer: any): Promise<void> {
-    const queries: RateQuery[] = [
-        { url: 'https://www.finanzen.at/aktien/gold_fields-aktie/tgt', name: 'Gold Fields', isin: 'ZAE000018123' },
-        { url: 'https://www.finanzen.at/aktien/tesla-aktie/tgt', name: 'Tesla', isin: 'US88160R1014' },
-    ];
+    const queries: RateQuery[] = rateQueryList;
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     for (const rateQuery of queries) {
