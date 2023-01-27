@@ -1,42 +1,21 @@
-# Apps
+# Stock Planner App
 
 App can be created by executing `deploy/create-app.azcli`
 
+![Architecture](/docs/architecture.png)
+
 ## Rate Miner
 
-Gets rates from a website and writes them to a database.
+Gets rates from a website based on a timer triggered function app and writes them to a queue. Azure Storage Queue because it's cheap and easy to use.
 
-### Setup
-
-Update localsettings.json in Function App:
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "<Storage Connection String>",
-  }
-}
-```
+![miner](../docs/miner.png)
 
 ## Rate Processor
 
-Reads rates from a queue and writes them to a database.
-
-### Setup   
-
-```json
-{
-    "IsEncrypted": false,
-    "Values": {
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "AzureWebJobsStorage": "<Storage Connection String>",
-        "DatabaseConnectionString": "Data Source=localhost;Initial Catalog=stock-planner;Persist Security Info=True;User ID=<DBUser>;Password='<DBPassword>'"
-    }
-}
-```
+Reads rates from a queue and writes them to a sql sever database. Design decision was to use a queue to decouple the miner from the processor. SQL Server because it is there and cheap.
+ 
+![queue](../docs/queue.png)
 
 ## Stock App UI
 
-Angular App that consumens the data and visualizes it. So far it's just a mockup.
+Angular App that consumens the data and visualizes it. It will use Client Side State (NgRx) and Real Time integration. So far it's just a mockup.
