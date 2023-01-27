@@ -3,9 +3,7 @@ import puppeteer from 'puppeteer';
 import { RateQuery } from '../model/rateQuery';
 import DomParser = require('dom-parser');
 
-const timerTrigger: AzureFunction = async function (context: Context, myTimer: any): Promise<void> {
-    var timeStamp = new Date().toISOString();
-
+const timerTrigger: AzureFunction = async function (context: Context, rateTimer: any): Promise<void> {
     const queries: RateQuery[] = [
         { url: 'https://www.finanzen.at/aktien/gold_fields-aktie/tgt', name: 'Gold Fields', isin: 'ZAE000018123' },
         { url: 'https://www.finanzen.at/aktien/tesla-aktie/tgt', name: 'Tesla', isin: 'US88160R1014' },
@@ -22,8 +20,10 @@ const timerTrigger: AzureFunction = async function (context: Context, myTimer: a
             query.current = getNumber(ratesResult[0].textContent);
             query.deltaCurr = getNumber(ratesResult[1].textContent);
             query.deltaPercent = getNumber(ratesResult[2].textContent);
+            query.date = new Date();
             console.log(query);
         }
+        context.bindings.rateQueueItem = JSON.stringify(queries);
     }
     await browser.close();
 };

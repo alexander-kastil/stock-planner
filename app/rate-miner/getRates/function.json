@@ -1,10 +1,22 @@
 {
   "bindings": [
     {
-      "name": "myTimer",
+      "name": "rateTimer",
       "type": "timerTrigger",
       "direction": "in",
       "schedule": "0 */1 * * * *"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "rateQueueItem",
+      "queueName": "rates",
+      "connection": "AzureWebJobsStorage"
     }
   ],
   "scriptFile": "../dist/getRates/index.js"
