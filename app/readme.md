@@ -36,3 +36,7 @@ Reads rates from a queue and writes them to a database.
     }
 }
 ```
+
+## Stock App UI
+
+Angular App that consumens the data and visualizes it. So far it's just a mockup.
