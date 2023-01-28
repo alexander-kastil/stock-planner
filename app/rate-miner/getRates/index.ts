@@ -21,7 +21,9 @@ const timerTrigger: AzureFunction = async function (context: Context, rateTimer:
             rateQuery.date = new Date();
             console.log(rateQuery);
         }
-        context.bindings.rateQueueItem = JSON.stringify(queries);
+
+        var b = Buffer.from(JSON.stringify(rateQuery));
+        context.bindings.rateQueueItem = b.toString('base64');
     }
     await browser.close();
 };

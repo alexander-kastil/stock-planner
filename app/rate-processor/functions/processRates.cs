@@ -4,6 +4,7 @@ using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text;
 
 namespace Integrations
 {
@@ -19,20 +20,20 @@ namespace Integrations
         [FunctionName("processRates")]
         public void Run([QueueTrigger("rates", Connection = "AzureWebJobsStorage")]string item, ILogger log)
         {
+            RateQuery[] rate = JsonSerializer.Deserialize<RateQuery[]>(item);
             log.LogInformation($"C# Queue trigger starts processing: {item}");
-            RateQuery rate = JsonSerializer.Deserialize<RateQuery>(item);
 
-            StockPrice stockPrice = new StockPrice
-            {
-                ISIN = rate.ISIN,
-                Current = rate.Current,
-                DeltaCurrent = rate.DeltaCurr,
-                DeltaPercent = rate.DeltaPercent,
-                Date = rate.Date
-            };
+            // StockPrice stockPrice = new StockPrice
+            // {
+            //     ISIN = rate.ISIN,
+            //     Current = rate.Current,
+            //     DeltaCurrent = rate.DeltaCurr,
+            //     DeltaPercent = rate.DeltaPercent,
+            //     Date = rate.Date
+            // };
 
-            dc.StockPrices.Add(stockPrice);
-            dc.SaveChanges();   
+            // dc.StockPrices.Add(stockPrice);
+            // dc.SaveChanges();   
             log.LogInformation($"C# Queue trigger function processed: {item}");     
         }
     }
