@@ -4,4 +4,5 @@ export const rateQueryList: RateQuery[] = [
     { url: 'https://www.finanzen.at/aktien/gold_fields-aktie/tgt', name: 'Gold Fields', isin: 'ZAE000018123' },
     { url: 'https://www.finanzen.at/aktien/tesla-aktie/tgt', name: 'Tesla', isin: 'US88160R1014' },
     { url: 'https://www.finanzen.at/aktien/nvidia-aktie/tgt', name: 'NVIDIA', isin: 'US67066G1040' },
+    { url: 'https://www.finanzen.at/aktien/microsoft-aktie/tgt', name: 'Microsoft', isin: 'US5949181045' },
 ];

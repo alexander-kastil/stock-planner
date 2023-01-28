@@ -1,30 +1,30 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Integrations
 {
     public class RateQuery
     {
 
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url;
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name;
 
-        [JsonProperty("isin")]
+        [JsonPropertyName("isin")]
         public string ISIN;
 
-        [JsonProperty("current")]
+        [JsonPropertyName("current")]
         public int Current;
 
-        [JsonProperty("deltaCurr")]
+        [JsonPropertyName("deltaCurr")]
         public int DeltaCurr;
 
-        [JsonProperty("deltaPercent")]
+        [JsonPropertyName("deltaPercent")]
         public int DeltaPercent;
 
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public DateTime Date;
     }
 }

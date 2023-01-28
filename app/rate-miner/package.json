@@ -12,7 +12,8 @@
   "dependencies": {
     "axios": "^1.2.5",
     "dom-parser": "^0.1.6",
-    "puppeteer": "^19.6.1"
+    "puppeteer": "^19.6.1",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",

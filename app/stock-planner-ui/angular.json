@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "stock-app-ui": {
+    "stock-planner": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/stock-app-ui",
+            "outputPath": "dist/stock-planner",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "stock-app-ui:build:production"
+              "browserTarget": "stock-planner:build:production"
             },
             "development": {
-              "browserTarget": "stock-app-ui:build:development"
+              "browserTarget": "stock-planner:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "stock-app-ui:build"
+            "browserTarget": "stock-planner:build"
           }
         },
         "test": {
